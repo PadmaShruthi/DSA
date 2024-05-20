@@ -1,0 +1,104 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+class LL{
+    Node head;
+    LL(){
+        this.head = null;
+    }
+    
+    void addLast (int data){
+        Node newNode = new Node(data);
+        if (head == null){
+            head = newNode;
+            return;
+        }
+        Node current = head;
+        while (current.nxt != head){
+            current = current.nxt;
+        }
+        current.nxt = newNode;
+        newNode.prev = current;
+        newNode.nxt = head;
+        head.prev = newNode;
+    }
+    
+    void addBegin (int data){
+        Node newNode = new Node (data);
+        if (head == null){
+            head = newNode;
+            newNode.nxt = head;
+            head.prev = newNode;
+            return;
+        }
+        Node current = head;
+        while (current.nxt != head){
+            current = current.nxt;
+        }
+        current.nxt = newNode;
+        newNode.nxt = head;
+        head.prev = newNode;
+        newNode.prev = current;
+    }
+    
+    void addAtSpec( int index, int data){
+        Node newNode = new Node (data);
+        if (head == null){
+            head = newNode;
+            newNode.nxt = head;
+            head.prev = newNode;
+            return;
+        }
+        if (index == 1){
+            addBegin(data);
+            return;
+        }
+        Node current = head;
+        int c=0;
+        while (current.nxt != head){
+            if (c == index-2){
+                break;
+            }
+            current = current.nxt;
+            c++;
+        }
+        newNode.prev = current;
+        newNode.nxt = current.nxt;
+        current.nxt = newNode;
+        current.nxt.prev = newNode;
+    }
+    
+    void traverse (){
+        Node current = head;
+        while (current.nxt != head){
+            System.out.println(current.data + " ");
+            current = current.nxt;
+        }
+    }
+    
+}
+class Node{
+    int data;
+    Node nxt, prev;
+    Node(int data){
+        this.data = data;
+        this.nxt = null;
+        this.prev = null;
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		LL l1 = new LL();
+		l1.addBegin(23);
+		l1.addBegin(12);
+		l1.addLast(14);
+		l1.addLast(39);
+		l1.traverse();
+	}
+}

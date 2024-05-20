@@ -1,0 +1,95 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+import java.util.LinkedList;
+
+class LL{
+	Node head;
+	LL(){
+		this.head = null;
+	}
+	void addLast(int data) {
+		Node newnode = new Node(data);
+		if(head == null) {
+			head = newnode;
+			return;
+		}
+		Node current = head;
+		while(current != null) {
+			current = current.nxt;
+		}
+		current.nxt = newnode;
+		newnode.prev = current;
+	}
+	void addBegin(int data) {
+		Node newnode = new Node(data);
+		head.prev = newnode;
+		newnode.nxt = head;
+		head = newnode;
+	}
+	void addToSpeci(int index, int data) {
+		Node newnode = new Node(data);
+		if(head == null) {
+			head = newnode;
+			return;
+		}
+		if(index == 1){
+		    addBegin(data);
+		    return;
+		}
+		Node current = head;
+ 		int c = 0;
+		while(current.nxt != null){
+			if(c == index-2) {
+				break;
+			}
+			current = current.nxt;
+ 			c++;
+		}
+		newnode.nxt = current.nxt;
+		newnode.prev = current;
+		current.nxt.prev = newnode;
+		current.nxt = newnode;
+	}
+	void traverse() {
+		Node current = head;
+		while(current.nxt !=null) {
+			System.out.println(current.data + " ");
+			current = current.nxt;
+		}
+	}
+}
+
+class Node{
+	int data;
+	Node nxt,prev;
+	Node(int data){
+		this.data = data;
+		this.nxt = null;
+		this.prev = null;
+	}
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+		LL l1 = new LL();
+		l1.addLast(34);
+// 		l1.traverse();
+        l1.addBegin(90);
+		l1.addLast(12);
+// 		l1.traverse();
+		l1.addLast(56);
+		l1.addBegin(21);
+		l1.traverse();
+		System.out.println("Specific");
+		l1.addToSpeci(2,67);
+		l1.addToSpeci(4,61);
+		l1.traverse();
+	}
+}

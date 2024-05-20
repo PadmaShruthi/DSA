@@ -1,0 +1,95 @@
+package LinkedList;
+
+public class SinglyLL {
+	Node head; //to check the first node
+	Node tail; // to check the last node
+	int size; // to get the size of linked list 
+	
+	SinglyLL(){
+		this.head = null;
+		this.tail = null;
+		this.size = 0;
+	}
+	
+	
+	void addLast(int data) {
+		Node newnode = new Node(data);
+		if(tail == null) {
+			addBegin(data);
+			return;
+		}
+		
+		tail.nxt = newnode;
+		tail = newnode;
+		size++; // increase the size after every insertion to get the total size
+	}
+	void addBegin(int data) {
+		Node newnode = new Node(data);
+		
+		if(head != null){
+			newnode.nxt = head; 
+			}
+		
+		head = newnode;
+		if (tail == null) {
+			tail = head;
+		}
+		size++;
+	}
+	void addToSpeci(int index, int data) {
+		Node newnode = new Node(data);
+		if(head == null) {
+			head = newnode;
+			return;
+		}
+		// index starts from 0, if index is 0 so call begin method
+		if (index == 0) {
+			addBegin(data);
+			return;
+		}
+		// size has the total length of LL, if index is same as size, call last method
+		if (index == size) {
+			addLast (data);
+			return;
+		}
+		
+		Node current = head;
+		for (int i=1; i<index; i++) {
+			current = current.nxt;
+		}
+		newnode.nxt = current.nxt;
+		current.nxt = newnode;
+		size++;
+	}
+	void traverse() {
+		Node current = head;
+		while(current != null) {
+			System.out.print(current.data + " -> ");
+			current = current.nxt;
+		}
+		System.out.println("Size: " + size);
+	}
+}
+
+class Node{
+	int data;
+	Node nxt;
+	Node(int data){
+		this.data = data;
+		this.nxt = null;
+	}
+}
+
+class Main {
+	public static void main(String[] args) {
+		SinglyLL l1 = new SinglyLL();
+		l1.addBegin(45);
+		l1.addBegin(90);
+		l1.addLast(13);
+		l1.addBegin(78);
+		l1.addToSpeci(0, 66);
+		l1.addToSpeci(3, 67);
+		l1.traverse();
+		
+	}
+}

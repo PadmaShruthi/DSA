@@ -1,0 +1,108 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+import java.util.LinkedList;
+
+class LL{
+	Node head;
+	int count = 0;
+	LL(){
+		this.head = null;
+	}
+	void addLast(int data) {
+		Node newnode = new Node(data);
+		this.count++;
+		if(head == null) {
+			head = newnode;
+			newnode.nxt = head;
+			return;
+		}
+		Node current = head;
+		int c = 0;
+		while(c < this.count) {// current.nxt != head
+			current = current.nxt;
+			c++;
+		}
+		current.nxt = newnode;
+		newnode.nxt = head;
+	}
+	void addBegin(int data) {
+		Node newnode = new Node(data);
+		this.count++;
+		Node current = head;
+		int c = 0;
+		while(c < this.count) {
+			current = current.nxt;
+			c++;
+		}
+		current.nxt = newnode;
+		newnode.nxt = head;
+		head = newnode;
+	}
+	void addToSpeci(int index, int data) {
+		Node newnode = new Node(data);
+		if(head == null) {
+			head = newnode;
+			newnode.nxt = head;
+			return;
+		}
+		if(index == 1){
+		    addBegin(data);
+		    return;
+		}
+		Node current = head;
+// 		int c = 0;
+		while(current.nxt != head) {
+			if(c == index-2) {
+				break;
+			}
+			current = current.nxt;
+// 			c++;
+		}
+		newnode.nxt = current.nxt;
+		current.nxt = newnode;
+		this.count++;
+	}
+	void traverse() {
+		Node current = head;
+		int c = 0;
+		while(c < this.count) {// current.nxt != head
+			System.out.println(current.data + " ");
+			current = current.nxt;
+			c++;
+		}
+	}
+}
+
+class Node{
+	int data;
+	Node nxt;
+	Node(int data){
+		this.data = data;
+		this.nxt = null;
+	}
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+		LL l1 = new LL();
+		l1.addLast(34);
+// 		l1.traverse();
+        l1.addBegin(90);
+		l1.addLast(12);
+// 		l1.traverse();
+		l1.addLast(56);
+		l1.addBegin(21);
+		l1.traverse();
+		System.out.println("Specific");
+		l1.addToSpeci(2,67);
+		l1.addToSpeci(4,61);
+		l1.traverse();
+	}
+}

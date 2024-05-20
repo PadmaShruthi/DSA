@@ -1,0 +1,77 @@
+import java.util.LinkedList;
+
+class LL{
+	Node head;
+	LL(){
+		this.head = null;
+	}
+	void addLast(int data) {
+		Node newnode = new Node(data);
+		if(head == null) {
+			head = newnode;
+			return;
+		}
+		Node current = head;
+		while(current.nxt != null) {
+			current = current.nxt;
+		}
+		current.nxt = newnode;
+
+	}
+	void addBegin(int data) {
+		Node newnode = new Node(data);
+		if(head != null){
+			newnode.nxt = head; }
+		head = newnode;
+	}
+	void addToSpeci(int index, int data) {
+		Node newnode = new Node(data);
+		if(head == null) {
+			head = newnode;
+			return;
+		}
+		Node current = head;
+		int c = 0;
+		while(current != null) {
+			if(c == index-1) {
+				break;
+			}
+			current = current.nxt;
+			c++;
+		}
+		newnode.nxt = current.nxt;
+		current.nxt = newnode;
+	}
+	void traverse() {
+		Node current = head;
+		System.out.println("first data"+current.data + " ");
+		while(current != null) {
+			System.out.println(current.data + " ");
+			current = current.nxt;
+		}
+	}
+}
+
+class Node{
+	int data;
+	Node nxt;
+	Node(int data){
+		this.data = data;
+		this.nxt = null;
+	}
+}
+
+public class Student {
+
+	public static void main(String[] args) {
+		LL l1 = new LL();
+		l1.addBegin(45);
+		l1.addBegin(90);
+		l1.addLast(13);
+		l1.addBegin(78);
+		l1.addToSpeci(3, 67);
+//		78 90 67 45 13
+		l1.traverse();
+	}
+
+}
