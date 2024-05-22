@@ -1,6 +1,4 @@
-package LinkedList;
-
-public class SinglyLL {
+class SinglyLL {
 	Node head; //to check the first node
 	Node tail; // to check the last node
 	int size; // to get the size of linked list 
@@ -61,6 +59,53 @@ public class SinglyLL {
 		current.nxt = newnode;
 		size++;
 	}
+	
+	int deleteFirst(){
+	    if(head != null){
+	        int data = head.data;
+	        head = head.nxt;
+	        size--;
+	        return data;
+	    }
+	    if (head == null){
+	        tail = null;
+	        
+	    }
+	    return 0;
+	}
+	
+	int deleteLast(){
+	    if (size <= 1) {
+            return deleteFirst();
+        }
+	    Node node = head;
+	    while(node.nxt != tail){
+	        node = node.nxt;
+	    }
+	    int data = node.nxt.data;
+	    tail = node;
+	    tail.nxt = null;
+	    size--;
+	    return data;
+	}
+	
+	int deleteAtSpec(int index){
+	    if (index == 0){
+	        deleteFirst();
+	    }
+	    
+	    if(index == size - 1){
+	        deleteLast();
+	    }
+	    Node node = head;
+	    for(int i=0;i<index-1;i++){
+	       node = node.nxt; 
+	    }
+	    int data = node.nxt.data;
+	    node.nxt = node.nxt.nxt;
+	    size--;
+	    return data;
+	}
 	void traverse() {
 		Node current = head;
 		while(current != null) {
@@ -80,15 +125,20 @@ class Node{
 	}
 }
 
-class Main {
+public class Main {
 	public static void main(String[] args) {
 		SinglyLL l1 = new SinglyLL();
-		l1.addBegin(45);
+		l1.addBegin(23);
+    	l1.addBegin(45);
+//		System.out.println(l1.deleteFirst());
 		l1.addBegin(90);
-		l1.addLast(13);
-		l1.addBegin(78);
-		l1.addToSpeci(0, 66);
-		l1.addToSpeci(3, 67);
+ 		l1.addLast(13);
+ 		l1.traverse();
+// 		System.out.println(l1.deleteLast());
+        System.out.println(l1.deleteAtSpec(1));
+// 		l1.addBegin(78);
+// 		l1.addToSpeci(0, 66);
+// 		l1.addToSpeci(3, 67);
 		l1.traverse();
 		
 	}
