@@ -69,6 +69,30 @@ class CircularSinglyLL {
 		current.next = newnode;
 		size++;
 	}
+	
+	public void delete(int val){
+	    Node node = head;
+	    //if there is no node in the list
+	    if (node == null){
+	        return;
+	    }
+	    //if the val to delete itself is head
+	    if (node.val == val){
+	        head = head.next;
+	        tail.next = head;
+	        return;
+	    }
+	    //if the value to delete is in the middle of the list
+	    do{
+	        Node n = node.next; //n is the pointer pointed by the node.next
+	        if (n.val == val){
+	            node.next = n.next;
+	            break;
+	        }
+	        node = node.next;
+	    }while(node != head);
+	    
+	}
 
  	public void display() {
         Node node = head;
@@ -102,6 +126,9 @@ public class Main {
 		l1.display();
 		l1.addToSpeci(3,87);
 		l1.display();
-		
+		l1.delete(88);
+		l1.display();
+		l1.delete(45);
+		l1.display();
 	}
 }

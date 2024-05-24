@@ -61,28 +61,31 @@ class SinglyLL {
 	}
 	
 	int deleteFirst(){
-	    if(head != null){
-	        int data = head.data;
+	    if(head != null){ //add this null check to avoid null pointer exception
+	        int data = head.data; // data is the value to be returned
 	        head = head.nxt;
-	        size--;
+	        size--; // reduce the size after every deletion
 	        return data;
 	    }
+	    //if there is no node in the list, make the tail also null
 	    if (head == null){
 	        tail = null;
 	        
 	    }
-	    return 0;
+	    return 0; //if there is no data matched return 0
 	}
 	
 	int deleteLast(){
+	    //if there is only one node in the list, call deleteFirst
 	    if (size <= 1) {
             return deleteFirst();
         }
+        //to reach the last node in the list, traverse till the node's next is equal to tail, else move forward t0 nextnode 
 	    Node node = head;
 	    while(node.nxt != tail){
 	        node = node.nxt;
 	    }
-	    int data = node.nxt.data;
+	    int data = node.nxt.data; //return the node's next data i.e the tail's value
 	    tail = node;
 	    tail.nxt = null;
 	    size--;
@@ -90,13 +93,15 @@ class SinglyLL {
 	}
 	
 	int deleteAtSpec(int index){
+	    //if index is 0, first node deletion
 	    if (index == 0){
 	        deleteFirst();
 	    }
-	    
+	    //if index is equal to size-1 (0 based indexing), last node deletion
 	    if(index == size - 1){
 	        deleteLast();
 	    }
+	    //if the deletion is in the middle, reach one index before the given index to change the pointer(index-1)
 	    Node node = head;
 	    for(int i=0;i<index-1;i++){
 	       node = node.nxt; 

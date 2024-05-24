@@ -63,6 +63,46 @@ class DoublyLL {
         return null;
     }
     
+    public void deleteFirst(int val){
+        Node node = head;
+        
+        if (head == null){
+            return;
+        }
+        
+        if (node.val == val){
+            head = head.next;
+        }
+        
+        if(node.next != null){
+            node.next.prev = node.prev;
+        }
+        
+    }
+    
+    public void deleteLast(int val){
+        Node node = head;
+        
+        while (node.next != null){
+            node = node.next;
+        }
+        
+        if (node.prev !=null){
+            node.prev.next = node.next;
+        }
+    }
+    
+    public void deleteSpecval(int val){
+        Node node = head;
+        while (node.next != null){
+            if (node.val == val){
+                node.prev.next = node.next;
+                node.next.prev = node.prev;
+                break;
+            }
+            node = node.next;
+        }
+    }
     public void display() {
         Node node = head;
         Node last = null;
@@ -101,6 +141,11 @@ public class Main {
 		l1.insertLast(88);
 		l1.insertLast(65);
 		l1.insert(88,99);
+		l1.display();
+//		l1.deleteFirst(13);
+//		l1.deleteLast(65);
+		l1.deleteSpecval(45);
+		l1.deleteSpecval(88);
 		l1.display();
 		
 	}
