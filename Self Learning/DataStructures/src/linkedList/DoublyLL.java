@@ -1,5 +1,7 @@
-class DoublyLL {
-    private Node head;
+package linkedList;
+
+public class DoublyLL {
+private Node head;
     
     DoublyLL(){
         this.head=null;
@@ -120,33 +122,35 @@ class DoublyLL {
         }
         System.out.println("START");
     }
-}
-class Node{
-	int val;
-	Node next;
-	Node prev;
-	
-	Node(int val){
-		this.val = val;
-		this.next = null;
-		this.prev = null;
-	}
-}
-public class Main {
-	public static void main(String[] args) {
-		DoublyLL l1 = new DoublyLL();
-		l1.insertFirst(45);
-		l1.insertFirst(90);
-		l1.insertFirst(13);
-		l1.insertLast(88);
-		l1.insertLast(65);
-		l1.insert(88,99);
-		l1.display();
-//		l1.deleteFirst(13);
-//		l1.deleteLast(65);
-		l1.deleteSpecval(45);
-		l1.deleteSpecval(88);
-		l1.display();
+
+	void rotate(int rotation){
+	        int c = 0;
+	        Node current = head;
+	        Node tail = null;
+	        Node temp = null;
+	        while(current.next != null){
+	            c++;
+	            if(c == rotation){
+	                temp = current.next;
+	                tail = current;
+	            }
+	            current = current.next;
+	        }
+	        current.next = head;
+	        head.prev = current;
+	        head = temp;
+	        head.prev = null;
+	        tail.next = null;
+	    }
+	class Node{
+		int val;
+		Node next;
+		Node prev;
 		
+		Node(int val){
+			this.val = val;
+			this.next = null;
+			this.prev = null;
+		}
 	}
 }

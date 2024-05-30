@@ -1,4 +1,6 @@
-class SinglyLL {
+package linkedList;
+
+public class SinglyLL {
 	Node head; //to check the first node
 	Node tail; // to check the last node
 	int size; // to get the size of linked list 
@@ -128,23 +130,5 @@ class Node{
 		this.data = data;
 		this.nxt = null;
 	}
-}
 
-public class Main {
-	public static void main(String[] args) {
-		SinglyLL l1 = new SinglyLL();
-		l1.addBegin(23);
-    	l1.addBegin(45);
-//		System.out.println(l1.deleteFirst());
-		l1.addBegin(90);
- 		l1.addLast(13);
- 		l1.traverse();
-// 		System.out.println(l1.deleteLast());
-        System.out.println(l1.deleteAtSpec(1));
-// 		l1.addBegin(78);
-// 		l1.addToSpeci(0, 66);
-// 		l1.addToSpeci(3, 67);
-		l1.traverse();
-		
-	}
 }
