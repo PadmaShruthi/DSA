@@ -1,0 +1,65 @@
+class Q{
+    int ar[] = new int[5];
+    int rear, front;
+    Q(){
+       rear = -1;
+       front = -1;
+    }
+    void enqueue(int data){
+        if(rear == ar.length-1 && front == 0 || rear == front-1){
+            System.out.println("Full");
+            return;
+        }
+        else if(rear == ar.length-1 && front != 0){
+            rear = 0;
+            ar[rear] = data;
+        }
+        else if(front == -1){
+            rear = 0;
+            front = 0;
+            ar[rear] = data;
+        }
+        else{
+            rear++;
+            ar[rear] = data;
+        }
+        System.out.println("Rear:"+rear);
+    }
+    void dequeue(){
+        front++;
+        if(front > rear || front == -1){
+            System.out.print("Empty");
+            front = -1;
+            rear = -1;
+        }
+    }
+    void display(){
+        System.out.println("Queue Values");
+        int count = front > rear?ar.length - front + (rear+1):rear+1;
+        for(int i = 0, index = front; i < count ; i++){ // index = 0
+            System.out.print(ar[index] + " ");
+            index++;
+            if(index == ar.length){
+                index %= ar.length;
+            }
+        }
+        System.out.println("\nEnd");
+    }
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+	    Q q1 = new Q();
+	    q1.enqueue(12);
+	    q1.enqueue(45);
+	    q1.enqueue(42);
+	    q1.enqueue(25);
+	    q1.enqueue(675);
+	    q1.display();
+	    q1.enqueue(85);
+	    q1.dequeue();
+	    q1.enqueue(34);
+	    q1.display();
+	}
+}
