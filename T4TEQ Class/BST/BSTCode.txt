@@ -1,0 +1,86 @@
+class Node{
+    int key;
+    Node left, right;
+    Node(int key){
+        this.key = key;
+        left = null;
+        right = null;
+    }
+}
+
+class BinarySearchTree{
+    Node root;
+    void insert(int key){
+        root = insertRec(root, key);
+    }
+    Node insertRec(Node root, int key){
+        if(root == null){
+			root = new Node(key);		
+		}
+		else if(key < root.key){
+			root.left = insertRec(root.left, key);
+		}
+		else if(key > root.key){
+			root.right = insertRec(root.right, key);
+		}
+		return root;
+    }
+    void inorder(){
+        inorderRec(root);
+    }
+    void inorderRec(Node root){
+		if(root != null){
+			inorderRec(root.left);
+			System.out.print(root.key + " ");
+			inorderRec(root.right);
+		}
+	}
+	Node deleteRec(Node root, int key){
+		if(root == null){
+			return root;
+		}
+		else if(key < root.key){
+			root.left = deleteRec(root.left, key);
+		}
+		else if(key > root.key){
+			root.right = deleteRec(root.right, key);
+		}
+		else{
+			if(root.left == null){
+				return root.right;
+			}
+			else if(root.right == null){
+				return root.left;
+			}
+			root.right = deleteRec(root.right, root.key);
+		}
+		return root;
+	}
+	void delete(int key){
+	    root = deleteRec(root, key);
+	}
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+// 		System.out.println("Hello World");
+		BinarySearchTree bst1 = new BinarySearchTree();
+		bst1.insert(12);
+		bst1.insert(16);
+		bst1.insert(10);
+		bst1.insert(19);
+		bst1.insert(14);
+		bst1.insert(11);
+		bst1.insert(20);
+		bst1.inorder();
+		System.out.println();
+		bst1.delete(10);
+		bst1.inorder();
+	}
+}
+
+
+// 12, 16, 10,19
+
+
