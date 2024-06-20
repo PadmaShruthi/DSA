@@ -41,6 +41,32 @@ public class BinaryTree {
 		  inorderRecursive(root.right);
 	  }
   }
+  
+  	public void preOrder() {
+	    preOrder(root);
+	  }
+
+	  private void preOrder(Node node) {
+	    if (node == null) {
+	      return;
+	    }
+	    System.out.print(node.key + " ");
+	    preOrder(node.left);
+	    preOrder(node.right);
+	  }
+	  
+	  public void postOrder() {
+		    preOrder(root);
+		  }
+
+		  private void postOrder(Node node) {
+		    if (node == null) {
+		      return;
+		    }
+		    preOrder(node.left);
+		    preOrder(node.right);
+		    System.out.print(node.key + " ");
+		  }
   public void display() {
 	  display(this.root, "");
   }
