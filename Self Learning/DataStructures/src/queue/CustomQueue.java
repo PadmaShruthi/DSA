@@ -38,7 +38,7 @@ public class CustomQueue {
 		 
 		 int removed = data[0]; // remove the element in first index
 		 
-		 //shift all the elements to the left size
+		 //shift all the elements to the left side
 		 for(int i = 1; i < end; i++) {
 			 data[i-1] = data[i];
 		 }

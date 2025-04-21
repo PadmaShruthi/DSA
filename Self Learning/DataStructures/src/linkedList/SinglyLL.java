@@ -82,7 +82,7 @@ public class SinglyLL {
 	    if (size <= 1) {
             return deleteFirst();
         }
-        //to reach the last node in the list, traverse till the node's next is equal to tail, else move forward t0 nextnode 
+        //to reach the last node in the list, traverse till the node's next is equal to tail, else move forward to nextnode 
 	    Node node = head;
 	    while(node.nxt != tail){
 	        node = node.nxt;
