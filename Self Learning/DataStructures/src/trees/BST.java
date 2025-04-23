@@ -1,5 +1,7 @@
 package trees;
 
+import java.util.ArrayList;
+
 public class BST {
 	public class Node {
 	    private int value;
@@ -100,5 +102,25 @@ public class BST {
 	    display(node.left, "Left child of " + node.value + " : ");
 	    display(node.right, "Right child of " + node.value + " : ");
 	  }
+	  
+	  public ArrayList<Integer> breadthFirstSearchRecursive(
+	            ArrayList<Node> queue,
+	            ArrayList<Integer> resultArray
+	    ) {
+	        if (queue.size() == 0) {
+	            return resultArray;
+	        }
+
+	        Node currentNode = queue.remove(0);
+	        resultArray.add(currentNode.value);
+	        if (currentNode.left != null) {
+	            queue.add(currentNode.left);
+	        }
+	        if (currentNode.right != null) {
+	            queue.add(currentNode.right);
+	        }
+
+	        return breadthFirstSearchRecursive(queue, resultArray);
+	    }
 
 }
