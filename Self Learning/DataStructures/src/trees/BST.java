@@ -18,7 +18,7 @@ public class BST {
 	    }
 	  }
 
-	  private Node root;
+	  public Node root;
 
 	  public BST() {
 
@@ -103,6 +103,8 @@ public class BST {
 	    display(node.right, "Right child of " + node.value + " : ");
 	  }
 	  
+	  
+	  //BFS - Left to right in each level
 	  public ArrayList<Integer> breadthFirstSearchRecursive(
 	            ArrayList<Node> queue,
 	            ArrayList<Integer> resultArray
@@ -122,5 +124,66 @@ public class BST {
 
 	        return breadthFirstSearchRecursive(queue, resultArray);
 	    }
+	  
+	  //DFS
+	  //Inorder - L,N,R
+	  public ArrayList<Integer> dfsInorder(){
+		  ArrayList<Integer> answer = new ArrayList<>();
+		  return traverseInorder(this.root, answer);
+	  }
+	  
+	  private ArrayList<Integer> traverseInorder(Node node, ArrayList<Integer> answer) {
+		// TODO Auto-generated method stub
+		  if(node.left != null) {
+			  traverseInorder(node.left, answer);
+		  }
+		  answer.add(node.value);
+		  if(node.right != null) {
+			  traverseInorder(node.right, answer);
+		  }
+		  
+		  return answer;
+	}
+
+	//Preorder - N,L,R
+	  public ArrayList<Integer> dfsPreorder(){
+		  ArrayList<Integer> answer = new ArrayList<>();
+		  return traversePreorder(this.root, answer);
+	  }
+	  
+	  private ArrayList<Integer> traversePreorder(Node node, ArrayList<Integer> answer) {
+		// TODO Auto-generated method stub
+		  
+		  answer.add(node.value);
+		  
+		  if(node.left != null) {
+			  traverseInorder(node.left, answer);
+		  }
+		  
+		  if(node.right != null) {
+			  traverseInorder(node.right, answer);
+		  }
+		  return answer;
+	}
+
+	//Postorder - L,R,N
+	  public ArrayList<Integer> dfsPostorder(){
+		  ArrayList<Integer> answer = new ArrayList<>();
+		  return traversePostorder(this.root, answer);
+	  }
+
+	private ArrayList<Integer> traversePostorder(Node node, ArrayList<Integer> answer) {
+		// TODO Auto-generated method stub
+		if(node.left != null) {
+			  traverseInorder(node.left, answer);
+		  }
+		  
+		  if(node.right != null) {
+			  traverseInorder(node.right, answer);
+		  }
+		answer.add(node.value);
+		return answer;
+	}
+	  
 
 }
